@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SwarmVisualizer from './components/SwarmVisualizer';
 import MetricsPanel from './components/MetricsPanel';
+import NetworkImpactPanel from './components/NetworkImpactPanel';
 import { translations } from './i18n';
 import {
   QUBIT_FREQ_HZ,
@@ -191,6 +192,8 @@ const App = () => {
           targetTime={TARGET_BLOCK_TIME}
           t={text} // Pass translations
         />
+
+        <NetworkImpactPanel />
 
         <div className="ui-overlay" style={{ top: 'auto', bottom: '20px' }}>
           {/* Battle Parameters Header with Warning Recall */}
