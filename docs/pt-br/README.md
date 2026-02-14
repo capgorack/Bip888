@@ -67,7 +67,9 @@ O BIP 888 ativa a força coletiva da rede Bitcoin em duas camadas fundamentais:
 Neste repositório, incluímos um **Quantum Resistance Dashboard** moderno:
 - **Realismo Científico:** Simulações baseadas na complexidade do Algoritmo de Grover ($\pi/4 \sqrt{N}$).
 - **Análise de Estresse:** Teste o comportamento do sistema com o teto teórico de **20 Milhões de Qubits**.
+- **Análise de Estresse:** Teste o comportamento do sistema com o teto teórico de **20 Milhões de Qubits**.
 - **Avisos Dinâmicos:** Feedback visual imediato para parâmetros extremos ou não-humanos.
+- **Benchmark de Rede:** Ferramenta de **Proof-of-Compact** em tempo real medindo o tempo de inflação de CPU e economia de banda (32 bytes vs 25MB).
 
 ![Demonstração do Visualizador BIP 888](../Vizualizer.gif)
 
