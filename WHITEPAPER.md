@@ -51,11 +51,23 @@ This proposal requires a Soft Fork.
 - Behaving nodes: Will see a flood of transactions but only confirm valid ones based on the new consensus rule.
 - Legacy nodes: May initially reject the high volume of traffic or see it as spam. A new P2P message type `INV_DECOY` may be required to segregate traffic and prevent legacy node banlisting.
 
+# Threat Modeling
+To evaluate the effectiveness of ESS, we compare the following security scenarios:
+
+1.  **Baseline (No Defense)**: Transactions reveal public keys in the mempool. A CRQC derivations of the private key within $T < 600s$ results in a successful theft via conflicting transaction (RBF or high-fee double spend).
+2.  **ESS Shield (BIP 888)**: The mempool is populated with $N=10^5$ decoys. The adversary must execute Grover searches across the swarm. The resulting search time $T_{search} \gg 600s$ ensures the transaction is confirmed before the key is derived.
+3.  **Full PQC (Future State)**: Cryptographic primitives are replaced with lattice/hash-based signatures. While providing absolute mathematical resistance, this requires significant block space and a major consensus overhaul. ESS serves as the "Pre-Quantum" bridge.
+
+# Open Questions & Considerations
+- **Scalability**: A decoy swarm of $10^5$ generates significant overhead. We propose "Compressed Decoys" (sending seeds rather than full data) to quantify and minimize MB/s impact per node.
+- **Relay Policies**: Bitcoin nodes use strict anti-spam and fee filters. Decoys must be "economically plausible" to avoid being pruned by relay policy before serving their defensive purpose.
+- **Adaptive Attacks**: An adversary may attempt to distinguish decoys using heuristics (creation timing, fee patterns). ESS must ensure the "plausibility" of decoys through statistical alignment with real-world mempool behavior.
+- **Grover implementation**: The cost of the SHA-256 Oracle in a CRQC environment needs further formalization to establish precise security margins across optimistic/pessimistic hardware scenarios.
+
 # Reference Implementation
 *(To be added)*
 Phase 1 simulation logic is currently being developed to demonstrate the entropy threshold required to defeat a simulated growing quantum adversary.
 
 # Security Considerations
 - **Bandwidth:** The primary cost is network bandwidth. This can be mitigated by "Compact Decoys" where only the seed to generate the decoy is transmitted, and nodes regenerate the full decoy locally.
-- **DoS:** Care must be taken to ensure the decoy generation generation itself cannot be used as a vector for Denial of Service against validators.
-
+- **DoS:** Care must be taken to ensure the decoy generation itself cannot be used as a vector for Denial of Service against validators.

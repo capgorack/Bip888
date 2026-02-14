@@ -60,14 +60,26 @@ O fator de aumento de segurança é $\sqrt{M}$.
 
 Isso significa que para manter a mesma probabilidade de sucesso, o atacante precisaria de $1.000$ vezes mais qubits coerentes ou tempo de coerência.
 
-## 3. Consenso Seletivo (Time-Lock)
+## 4. Cenários de Implementação (Grover vs. SHA-256)
 
-A validação é feita através de uma função de perturbação leve:
+A eficácia do ESS depende do custo real de execução do **Oráculo SHA-256** dentro de um CRQC (Computador Quântico Relevante para Criptografia). Definimos dois cenários para análise de segurança:
 
-$$V(T) = (Hash(T) \oplus Hash(Bloco_{anterior})) \mod D$$
+### Cenário A: Pessimista (Hardware Quântico Avançado)
+- **Suposição**: Portas quânticas de alta fidelidade e correção de erro eficiente permitem uma execução compacta do SHA-256.
+- **Custo do Oráculo ($C_{oracle}$)**: $\approx 10^9$ operações quânticas elementares por iteração.
+- **Resultado**: Com $M = 10^5$, o tempo de busca total $T_{total} = \sqrt{M} \cdot C_{oracle}$ ainda se mantém acima de 600s para hardwares de primeira geração.
 
-Se $V(T) < Alvo$, a transação é candidata a ser a $T_{real}$.
-O gerador de decoys garante que $V(T_{decoy}) \neq V(T_{real})$ ajustando sutilmente os bits de "padding" (espaço reservado) dos decoys para falharem neste teste, mas de uma forma que só é verificável se você souber o $Bloco_{anterior}$.
+### Cenário B: Otimista (Limites Físicos Próximos)
+- **Suposição**: A decoerência limita a profundidade do circuito quântico, forçando uma implementação mais "pesada" do SHA-256.
+- **Custo do Oráculo ($C_{oracle}$)**: $\approx 25 \cdot 10^9$ operações.
+- **Resultado**: A segurança do ESS é amplificada significativamente; o "Enxame" torna o custo de cada tentativa proibitivo, garantindo que mesmo ataques paralelos falhem em bater o tempo de 600s do Hashrate Global.
+
+---
+
+## 5. Escalonabilidade e Relay
+
+### Compactação de Decoys
+Para mitigar o overhead de largura de banda, o protocolo utiliza a função geradora caótica para enviar apenas o par $\{Hash(T_{real}), \text{Semente}\}$ em vez dos dados completos de $10.000$ transações. Os nós regeneram o enxame localmente para fins de obfuscação de scan.
 
 ---
 
