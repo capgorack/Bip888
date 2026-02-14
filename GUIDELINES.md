@@ -45,6 +45,14 @@ The protocol loses technical efficiency if:
 
 ---
 
+## 5. Propagation Protocol (Receiver-PoW) 📡
+
+To maintain network health, nodes must adhere to the **Compact Propagation Rule**:
+- **Do NOT broadcast full decoys.** Only broadcast the `INV_ENTROPY` seed.
+- **Validation Priority:** Nodes must prioritize validation of the `Time-Lock` shared secret before regenerating the full swarm to prevent CPU exhaustion (DoS).
+
+---
+
 ## Conclusion: Multi-layered Security
 
 *"The authenticity of this proposal lies in its mathematical capacity to survive chaos."*

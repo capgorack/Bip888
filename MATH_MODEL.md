@@ -59,7 +59,28 @@ The security increase factor is $\sqrt{M}$.
 
 This means that to maintain the same probability of success, the attacker would need $1,000$ times more coherent qubits or coherence time.
 
-## 3. Selective Consensus (Time-Lock)
+## 3. Implementation Scenarios (Grover vs. SHA-256)
+
+The effectiveness of ESS depends on the real execution cost of the **SHA-256 Oracle** within a CRQC (Cryptographically Relevant Quantum Computer). We define two scenarios for security analysis:
+
+### Scenario A: Pessimistic (Advanced Quantum Hardware)
+- **Assumption**: High-fidelity quantum gates and efficient error correction allow for a compact execution of SHA-256.
+- **Oracle Cost ($C_{oracle}$)**: $\approx 10^9$ elementary quantum operations per iteration.
+- **Result**: With $M = 10^5$, the total search time $T_{total} = \sqrt{M} \cdot C_{oracle}$ still remains above 600s for first-generation hardware.
+
+### Scenario B: Optimistic (Near Physical Limits)
+- **Assumption**: Decoherence limits quantum circuit depth, forcing a heavier SHA-256 implementation.
+- **Oracle Cost ($C_{oracle}$)**: $\approx 25 \cdot 10^9$ operations.
+- **Result**: ESS security is significantly amplified; the "Swarm" makes the cost of each attempt prohibitive, ensuring even parallel attacks fail to beat the Global Hashrate's 600s clock.
+
+---
+
+## 4. Scalability & Relay
+
+### Compact Decoys
+To mitigate bandwidth overhead, the protocol uses the chaotic generator function to transmit only the pair $\{Hash(T_{real}), \text{Seed}\}$ instead of the full data of $10,000$ transactions. Nodes regenerate the swarm locally for scan obfuscation purposes.
+
+## 5. Selective Consensus (Time-Lock)
 
 Validation is performed via a lightweight perturbation function:
 
@@ -67,6 +88,19 @@ $$V(T) = (Hash(T) \oplus Hash(PreviousBlock)) \mod D$$
 
 If $V(T) < Target$, the transaction is a candidate for being $T_{real}$.
 The decoy generator ensures that $V(T_{decoy}) \neq V(T_{real})$ by subtly adjusting "padding" bits of the decoys so they fail this test, in a way that is only verifiable if you know the $PreviousBlock$.
+
+---
+
+## 6. Seed Entropy Analysis
+
+System security depends on the unpredictability of the Seed $S$. We define seed entropy $H(S)$ as:
+
+$$H(S) = H(Block_{prev}) + H(Nonce_{node}) + H(TimeSlot)$$
+
+- **$H(Block_{prev})$**: Entropy provided by Proof-of-Work (~80 bits of min-entropy).
+- **$H(Nonce_{node})$**: Local node entropy, unknown to the remote attacker.
+
+For an attacker to predict the exact swarm distribution within time $t < 600s$, they would need to break the SHA-256 hash function to find collisions generating the same seed, which is computationally infeasible even for CRQC within this time window.
 
 ---
 

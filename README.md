@@ -60,6 +60,7 @@ BIP 888 activates the collective force of the Bitcoin network in two fundamental
 1. **Obfuscation Layer (Mempool):** The introduction of massive entropy ensures that the quantum search time ($T_{search}$) exceeds the average block confirmation time.
 2. **Immutability Layer (Blockchain):** After confirmation, the transaction is protected by global Hashrate. Reversing this layer requires an energy expenditure that negates quantum computation benefits in rewrite attacks.
 3. **Dynamic Scaling:** BIP 888 is not a static limit. As quantum hardware improves, the network simply increases $N$ (entropy density), maintaining the security margin with near-zero impact on permanent storage.
+4. **Scalability:** Utilizes **Compact Decoys** (sending seeds, not data) and **Receiver-PoW** to ensure trivial bandwidth impact (< 1% overhead) while maintaining maximal entropic shielding.
 
 ---
 

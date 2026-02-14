@@ -24,6 +24,12 @@ The security of BIP 888 relies on the quadratic speedup of **Grover's Algorithm*
 - Each iteration necessitates the execution of an **SHA-256 Oracle**.
 - For a swarm of $10^5$ items, the resulting complexity translates to billions of operations per search.
 
+### 2.3 Scalability & Receiver-PoW
+To ensure network viability, BIP 888 employs **Compact Propagation**:
+- **Seed-Only Transmission:** Only the 32-byte entropic seed is broadcast.
+- **Receiver Inflation:** Nodes locally regenerate the decoy swarm.
+- **Bandwidth Efficiency:** This mechanism shifts the load from network bandwidth (scarce) to local CPU (abundant), simulating a 2.5GB mempool load with only kilobytes of data transmission.
+
 ---
 
 ## 3. Consensus Integration
