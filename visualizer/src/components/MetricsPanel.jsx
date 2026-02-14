@@ -16,7 +16,7 @@ const MetricsPanel = ({ swarmSize, isAttacking, timeToCrack, status, statusKey, 
     };
 
     return (
-        <div className="ui-overlay">
+        <div style={{ width: '100%' }}>
             <h3 style={{ borderBottom: '1px solid var(--primary-color)', paddingBottom: '0.5rem', marginTop: 0 }}>
                 {t.metrics_title}
             </h3>

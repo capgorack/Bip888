@@ -70,7 +70,7 @@ Included in this repository is a modern **Quantum Resistance Dashboard**:
 - **Scientific Realism:** Simulations based on Grover's Algorithm complexity ($\pi/4 \sqrt{N}$).
 - **Stress Analysis:** Test system behavior with the theoretical ceiling of **20 Million Qubits**.
 - **Dynamic Warnings:** Immediate visual feedback for extreme or non-human parameters.
-- **Network Benchmark:** Real-time **Proof-of-Compact** tool measuring actual CPU inflation time and Bandwidth savings (32 bytes vs 25MB).
+- **Network Benchmark:** Real-time **Proof-of-Compact** tool measuring actual CPU inflation time and Bandwidth savings (32 bytes vs 25MB). [See Verification Methodology](./WHITEPAPER.md#7-network-impact-verification-benchmark)
 
 ![BIP 888 Visualizer Demo](./docs/Vizualizer.gif)
 
