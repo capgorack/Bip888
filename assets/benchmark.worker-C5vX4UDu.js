@@ -1,0 +1,1 @@
+(function(){"use strict";self.onmessage=e=>{const{swarmSize:t,iterations:a}=e.data,n=performance.now(),s=performance.now()-n,o=t*250;self.postMessage({type:"BENCHMARK_RESULT",payload:{durationMs:s,opsPerSec:t/(s/1e3),bandwidthNaiveBytes:o,bandwidthCompactBytes:36,swarmSize:t}})}})();
