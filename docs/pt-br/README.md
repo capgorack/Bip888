@@ -1,5 +1,10 @@
 # 🛡️ BIP 888: Entropic Swarm Shield (ESS) 🛡️🧠
 
+---
+### 🗺️ Roteiro do Projeto & Navegação
+[🔭 Visão](./README.md) → [📜 Whitepaper](./WHITEPAPER.md) → [🔢 Matemática](./MATH_MODEL.md) → [🧬 Regras](./GUIDELINES.md) → [🧪 Demo](https://capgorack.github.io/Bip888/)
+---
+
 🌐 [English](../../README.md) | 🇧🇷 **Português (Brasil)**
 
 [![Licença](https://img.shields.io/badge/Licença-BSD_2--Clause-blue.svg)](../../LICENSE)
@@ -12,7 +17,7 @@
 
 **BIP 888** (Escudo de Enxame Entrópico) é um protocolo de defesa ativa revolucionário projetado para proteger o Bitcoin contra ameaças de computação quântica (especificamente os algoritmos de Shor e Grover) sem exigir hard forks imediatos para Criptografia Pós-Quântica (PQC).
 
-Em vez de apenas fortalecer a fechadura criptográfica, o **ESS** utiliza o poder distribuído da rede de validadores para gerar um campo de "Mimetismo Fractal" — uma tempestade massiva de transações falsas (decoys) que neutralizam a vantagem quântica através da força bruta da entropia e inércia computacional.
+Em vez de apenas fortalecer a fechadura criptográfica, o **ESS** utiliza o poder distribuído da rede de validadores para gerar um campo de "Mimetismo Fractal" — uma tempestade massiva de transações falsas (decoys) que neutralizam a vantagem quântica através da força bruta da entropia. Ao utilizar a **Propagação Compacta de Sementes** e o **Receiver-PoW**, o protocolo alcança isso com overhead de rede quase zero (36 bytes), deslocando o esforço defensivo para a inércia computacional local.
 
 ### 📄 Documentação Técnica e PoC
 - 🇺🇸 [**English Whitepaper (BIP Draft)**](../../WHITEPAPER.md)

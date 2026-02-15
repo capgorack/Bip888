@@ -1,5 +1,10 @@
 # 🛡️ BIP 888: Entropic Swarm Shield (ESS) 🛡️🧠
 
+---
+### 🗺️ Project Roadmap & Navigation
+[🔭 Overview](./README.md) → [📜 Whitepaper](./WHITEPAPER.md) → [🔢 Math](./MATH_MODEL.md) → [🧬 Guidelines](./GUIDELINES.md) → [🧪 Demo](https://capgorack.github.io/Bip888/)
+---
+
 [🌐 **Português (Brasil)**](./docs/pt-br/README.md) | 🇺🇸 **English**
 
 [![License](https://img.shields.io/badge/License-BSD_2--Clause-blue.svg)](LICENSE)
@@ -13,7 +18,7 @@
 
 **BIP 888** (Entropic Swarm Shield) is a revolutionary active defense protocol designed to protect Bitcoin against quantum computing threats (specifically Shor's and Grover's algorithms) without requiring immediate hard forks to Post-Quantum Cryptography (PQC).
 
-Instead of just strengthening the cryptographic lock, **ESS** utilizes the distributed power of the validator network to generate a "Fractal Mimicry" field—a massive storm of false transactions (decoys) that neutralize quantum advantage through brute force entropy and computational inertia.
+Instead of just strengthening the cryptographic lock, **ESS** utilizes the distributed power of the validator network to generate a "Fractal Mimicry" field—a massive storm of false transactions (decoys) that neutralize quantum advantage through brute force entropy. By utilizing **Compact Seed Propagation** and **Receiver-PoW**, the protocol achieves this with near-zero network overhead (36 bytes), shifting the defensive effort to local computational inertia.
 
 ### 📄 Technical Documentation & PoC
 - 🇺🇸 [**English Whitepaper (BIP Draft)**](./WHITEPAPER.en.md)

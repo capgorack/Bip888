@@ -1,5 +1,10 @@
 # BIP: 888 (Proposto) - Modelo Matemático
 
+---
+### 🗺️ Roteiro do Projeto & Navegação
+[🔭 Visão](./README.md) → [📜 Whitepaper](./WHITEPAPER.md) → [🔢 Matemática](./MATH_MODEL.md) → [🧬 Regras](./GUIDELINES.md) → [🧪 Demo](https://capgorack.github.io/Bip888/)
+---
+
 🌐 [English](../../MATH_MODEL.md) | 🇧🇷 **Português (Brasil)**
 
 Este documento define as equações fundamentais que regem a geração de decoys (fantasmas) e a análise de entropia para o protocolo BIP 888.
@@ -92,7 +97,37 @@ $$H(S) = H(Bloco_{prev}) + H(Nonce_{node}) + H(TimeSlot)$$
 - **$H(Bloco_{prev})$**: Entropia fornecida pelo Proof-of-Work (~80 bits de segurança min-entropy).
 - **$H(Nonce_{node})$**: Entropia local do nó, desconhecida pelo atacante remoto.
 
-Para um atacante prever a distribuição exata do enxame em um tempo $t < 600s$, ele precisaria quebrar a função de hash SHA-256 para encontrar colisões que gerassem a mesma semente, o que é computacionalmente inviável mesmo para CRQC neste intervalo de tempo.
+Para um atacante prever a distribuição exata do enxame dentro de um tempo $t < 600s$, ele precisaria quebrar a função de hash SHA-256 para encontrar colisões que gerassem a mesma semente, o que é computacionalmente inviável mesmo para um CRQC dentro desta janela de tempo.
+
+## 7. A Matemática da Escutação (Shrouded Truth)
+
+A disrupção do BIP 888 reside em mover de uma validação binária (Válido/Inválido) para uma **Verificação de Entropia Probabilística**.
+
+### 7.1 Fator de Assimetria Computacional ($\mathcal{A}$)
+Definimos a Eficiência da Escutação ($\mathcal{A}$) como a razão entre o Custo de Distinção do Adversário ($C_A$) e o Custo de Verificação da Rede ($C_N$):
+
+$$\mathcal{A} = \frac{C_A}{C_N} = \frac{\sqrt{M} \cdot 2^{b/2}}{1}$$
+
+No BIP 888, enquanto $C_A$ cresce com a raiz quadrada do tamanho do enxame $M$, $C_N$ permanece $\mathcal{O}(1)$ devido à semente determinística. Isso cria uma "Verdade Oculta" onde a realidade é matematicamente transparente para a rede, mas opaca para o observador.
+
+### 7.2 Integridade via Entropia (Anti-Fraude)
+O enxame atua como uma assinatura do estado atual da rede. Qualquer transação $T'$ que não se origine do mapa caótico $f^{(i)}(S)$ é estatisticamente "fria" comparada ao enxame "quente".
+
+Definimos o **Limiar de Integridade** ($\Psi$) como:
+$$\Psi(T') = \begin{cases} 1 & \text{se } \exists i \in [1, M] : T' = f^{(i)}(S) \\ 0 & \text{caso contrário} \end{cases}$$
+
+Isso permite um anti-fraude de conhecimento zero (*zero-knowledge*): a rede pode rejeitar transações "alienígenas" sem sequer verificar suas assinaturas, simplesmente porque elas quebram o padrão entrópico da janela de tempo atual.
+
+---
+
+## 8. Evolução Lógica: A Cronologia da Prova
+
+A validação matemática do BIP 888 seguiu uma sequência rigorosa de formalizações:
+
+1.  **Fase de Resistência Grover**: Estabeleceu o multiplicador de segurança $\sqrt{M}$ para buscas quânticas.
+2.  **Axioma da Assimetria**: Provou o desacoplamento $\mathcal{O}(1)$ vs $\mathcal{O}(\sqrt{M})$ entre verificação da rede e busca adversarial.
+3.  **Limiar de Integridade ($\Psi$)**: Descobriu-se que o padrão caótico poderia ser reutilizado como um validador nativo de conhecimento zero para todo o mempool.
+4.  **Prova-de-Compactação**: Validou que o campo entrópico pode ser transmitido usando uma única semente de 32 bytes sem violar as restrições de banda do Bitcoin.
 
 ---
 

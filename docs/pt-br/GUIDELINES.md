@@ -1,5 +1,10 @@
 # BIP: 888 (Proposto) - Diretrizes Técnicas
 
+---
+### 🗺️ Roteiro do Projeto & Navegação
+[🔭 Visão](./README.md) → [📜 Whitepaper](./WHITEPAPER.md) → [🔢 Matemática](./MATH_MODEL.md) → [🧬 Regras](./GUIDELINES.md) → [🧪 Demo](https://capgorack.github.io/Bip888/)
+---
+
 🌐 [English](../../GUIDELINES.md) | 🇧🇷 **Português (Brasil)**
 
 Para garantir que o protocolo **Entropic Swarm Shield** funcione de forma tecnicamente sólida, definimos aqui os parâmetros de comportamento e a integração com a infraestrutura de segurança da rede Bitcoin.
@@ -43,15 +48,14 @@ O protocolo perde eficiência técnica se:
 1. **Densidade Crítica Insuficiente:** Se $N$ for baixo o suficiente para que $\sqrt{N}$ seja processado em poucos segundos.
 2. **Latência de Propagação:** Se a transação real for transmitida sem a injeção simultânea do enxame, permitindo o isolamento do alvo.
 
-44. **Latência de Propagação:** Se a transação real for transmitida sem a injeção simultânea do enxame, permitindo o isolamento do alvo.
-
 ---
 
 ## 5. Protocolo de Propagação (Receiver-PoW) 📡
 
-Para manter a saúde da rede, nós devem aderir à **Regra de Propagação Compacta**:
-- **NÃO transmita decoys completos.** Apenas transmita a semente `INV_ENTROPY`.
-- **Prioridade de Validação:** Nós devem priorizar a validação do segredo compartilhado `Time-Lock` antes de regenerar o enxame completo para evitar exaustão de CPU (DoS).
+Para manter a saúde da rede, os nós DEVEM aderir à **Regra de Propagação Compacta**:
+- **NÃO transmita decoys completos.** Apenas transmita a semente de 32 bytes `INV_ENTROPY`.
+- **Inflação Local:** O nó receptor expande a semente localmente através do mapa caótico.
+- **Prioridade de Validação:** Nós DEVEM priorizar a validação do segredo compartilhado `Time-Lock` antes de regenerar o enxame completo para evitar exaustão de CPU (DoS).
 
 ---
 

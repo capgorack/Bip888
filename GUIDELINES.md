@@ -1,4 +1,10 @@
-# BIP: 888 (Proposed) - Technical Guidelines
+# BIP 888: Entropy Density & Scaling Guidelines
+
+---
+### 🗺️ Project Roadmap & Navigation
+[🔭 Overview](./README.md) → [📜 Whitepaper](./WHITEPAPER.md) → [🔢 Math](./MATH_MODEL.md) → [🧬 Guidelines](./GUIDELINES.md) → [🧪 Demo](https://capgorack.github.io/Bip888/)
+---
+
 
 [🌐 **Português (Brasil)**](./docs/pt-br/GUIDELINES.md) | 🇺🇸 **English**
 
@@ -47,9 +53,10 @@ The protocol loses technical efficiency if:
 
 ## 5. Propagation Protocol (Receiver-PoW) 📡
 
-To maintain network health, nodes must adhere to the **Compact Propagation Rule**:
-- **Do NOT broadcast full decoys.** Only broadcast the `INV_ENTROPY` seed.
-- **Validation Priority:** Nodes must prioritize validation of the `Time-Lock` shared secret before regenerating the full swarm to prevent CPU exhaustion (DoS).
+To maintain network health, nodes MUST adhere to the **Compact Propagation Rule**:
+- **Do NOT broadcast full decoys.** Only broadcast the 32-byte `INV_ENTROPY` seed.
+- **Local Inflation:** Receiving nodes expand the seed locally using the deterministic chaotic map.
+- **Validation Priority:** Nodes MUST prioritize validation of the `Time-Lock` shared secret before regenerating the full swarm to prevent CPU exhaustion (DoS).
 
 ---
 
